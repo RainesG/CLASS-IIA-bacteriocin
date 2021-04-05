@@ -1,19 +1,18 @@
 <template>
   <navBarComp />
-  <router-view></router-view>
+  <categories/>
+  
 </template>
 
 <script>
 import navBarComp from "@/components/navBarComp";
+import categories from "@/components/categories"
 
 export default {
-  name: "App",
+  name: "HomePage",
   components: {
     navBarComp,
+    categories
   },
 };
 </script>
-
-<style>
-@import "assets/public.css";
-</style>

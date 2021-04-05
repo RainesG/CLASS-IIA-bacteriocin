@@ -1,19 +1,15 @@
 <template>
   <navBarComp />
-  <router-view></router-view>
+  <p class="title">BlastPage</p>
 </template>
 
 <script>
 import navBarComp from "@/components/navBarComp";
 
 export default {
-  name: "App",
+  name: "HomePage",
   components: {
     navBarComp,
   },
 };
 </script>
-
-<style>
-@import "assets/public.css";
-</style>

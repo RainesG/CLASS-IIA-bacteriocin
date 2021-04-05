@@ -1,0 +1,49 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  /* color: #2c3e50; */
+  /* margin-top: 60px; */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "arial", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  font-family: "B612 Mono", monospace;
+  text-align: left;
+}
+
+.site-menu {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width:1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
