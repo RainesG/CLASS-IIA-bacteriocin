@@ -3,16 +3,24 @@
     <ul class="data">
       <div class="flex space-evenly title">
         <span class="name">NAME</span>
-        <span class="uniport">UNIPROT</span>
+        <span class="uniprot">UNIPROT</span>
         <span class="aps">APS</span>
-        <span class="discription">DISCRIPTION</span>
+        <span class="description">description</span>
       </div>
-      <li v-for="(item, index) in navList" :key="index">
+      <li v-for="(item, index) in navList" :key="(index += 2)">
         <span class="name">
-          {{ item.name }}
+          {{ item.name + (index % 2) }}
         </span>
-        <span class="link" @click="getLinkData()">
-          {{ item.link1 }}
+        <span class="uniprot">
+          {{
+            String(item.link1.match(/[A-Z0-9]{6}/)) == "null"
+              ? ""
+              : String(item.link1.match(/[A-Z0-9]{6}/))
+          }}
+        </span>
+        <span class="aps" @click="getLinkData()"> {{}} </span>
+        <span class="description">
+          {{ item.description }}
         </span>
       </li>
     </ul>
@@ -20,7 +28,7 @@
 </template>
 
 <script>
-import {get} from '@/config/http'
+// import { get } from "@/config/http";
 
 export default {
   name: "StructuralData",
@@ -42,9 +50,29 @@ export default {
   methods: {
     async getLinkData() {
       // await console.log();
-      const link1 = Object.values(this.navList)[0].link1
-      const result = get(link1)
-      console.log(result);
+      const url = Object.values(this.navList);
+      // const params = "";
+
+      console.log(url);
+      // const uniprot = url.match(/[A-Z][0-9]{0,9}/);
+      // console.log("uniprot:" + uniprot);
+
+      // const DEFAULT_CONFIG = {
+      //   isApiHost: false,
+      // };
+      // const result = await get(url, params, DEFAULT_CONFIG);
+      // const parser = new DOMParser();
+      // const doc = parser.parseFromString(result.data, "text/html");
+      // console.log(doc.getElementsByClassName("databaseTable STRUCTURE")[0]);
+
+      // axios
+      //   .get(url, params)
+      //   .then((res) => {
+      //     // console.log(res.data)
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //   });
     },
   },
 };
@@ -60,9 +88,13 @@ export default {
   justify-content: space-evenly;
 }
 
-span {
-  color: #000;
+.title span {
   font-size: 18px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+span {
   text-decoration: none;
   cursor: pointer;
 }
@@ -78,6 +110,9 @@ li {
   /* border-bottom: 2px solid #62386f; */
   border-top: 3px solid #fff;
   padding: 9px;
+  font-size: 12px;
+  align-items: center;
+  color: #605e5e;
 }
 
 li:hover {
@@ -107,7 +142,7 @@ li:hover .link {
 }
 
 .data .name,
-.data .uniport,
+.data .uniprot,
 .data .aps {
   flex: 10%;
 }
@@ -116,7 +151,7 @@ li:hover .link {
   color: #8bc34a;
 }
 
-.data .discription {
+.data .description {
   flex: 70%;
 }
 

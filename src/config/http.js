@@ -1,4 +1,4 @@
-import fetch from '@/config/axios.config'
+import fetch from 'axios'
 
 const API_HOST = '/api'
 
