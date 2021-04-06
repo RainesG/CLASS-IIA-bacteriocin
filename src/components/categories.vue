@@ -20,7 +20,7 @@
       <!--此处可以换成子组件-->
     </div>
     <div v-show="menuIndex == 1" class="navContent">
-      内容二
+      <structuralData :test="test" />
       <!--此处可以换成子组件-->
     </div>
     <div v-show="menuIndex == 2" class="navContent">
@@ -36,12 +36,14 @@
 
 <script>
 import generalData from "@/components/generalDataComp";
+import structuralData from '@/components/structuralDataComp'
 import { getInfoData } from "@/services/bacteriocin.service";
 
 export default {
   name: "categories",
   components: {
     generalData,
+    structuralData
   },
   data() {
     return {
@@ -61,7 +63,7 @@ export default {
       // console.log(this.menuIndex);
       const result = await getInfoData();
       this.test = result.data;
-      console.log(Object.values(this.test)[0]);
+      console.log(typeof this.test);
     },
   },
 };
@@ -103,8 +105,9 @@ span:hover {
 }
 
 .navContent {
-  flex: 80%;
+  flex: 70%;
   background-color: cadetblue;
+  margin: 0 5%;
   margin-top: 100px;
 }
 </style>

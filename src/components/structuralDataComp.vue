@@ -1,16 +1,17 @@
 <template>
-  <div class="generalData">
+  <div class="structuralData">
     <ul class="data">
       <div class="flex space-evenly title">
-        <span class="id">ID</span>
-        <span class="link">LINK</span>
         <span class="name">NAME</span>
+        <span class="uniport">UNIPROT</span>
+        <span class="aps">APS</span>
+        <span class="discription">DISCRIPTION</span>
       </div>
       <li v-for="(item, index) in navList" :key="index">
-        <span class="id">
+        <span class="name">
           {{ item.name }}
         </span>
-        <span class="link">
+        <span class="link" @click="getLinkData()">
           {{ item.link1 }}
         </span>
       </li>
@@ -19,11 +20,14 @@
 </template>
 
 <script>
+import {get} from '@/config/http'
+
 export default {
-  name: "GeneralData",
+  name: "StructuralData",
   data() {
     return {
       navList: this.test,
+      // navList:null
     };
   },
   props: ["test"],
@@ -31,9 +35,16 @@ export default {
     test: {
       deep: true,
       async handler(nv) {
-        this.navList=nv
-        // await console.log(nv);
+        this.navList = nv;
       },
+    },
+  },
+  methods: {
+    async getLinkData() {
+      // await console.log();
+      const link1 = Object.values(this.navList)[0].link1
+      const result = get(link1)
+      console.log(result);
     },
   },
 };
@@ -47,6 +58,17 @@ export default {
 
 .space-evenly {
   justify-content: space-evenly;
+}
+
+span {
+  color: #000;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+span:hover {
+  text-decoration: underline;
 }
 
 li {
@@ -71,42 +93,37 @@ li:hover .link {
   color: #605e5e;
 }
 
+.data .title span {
+  cursor: default;
+}
+
+.data .title span:hover {
+  text-decoration: none;
+}
+
 .data li {
   display: flex;
   justify-content: space-evenly;
 }
 
-.data .id {
-  flex: 20%;
-}
-
-.data .id {
-  color: #8bc34a;
+.data .name,
+.data .uniport,
+.data .aps {
+  flex: 10%;
 }
 
 .data .name {
-  flex: 30%;
+  color: #8bc34a;
 }
 
-.data .link {
-  flex: 50%;
+.data .discription {
+  flex: 70%;
 }
 
 h2 {
   text-align: center;
   font-weight: 500;
   line-height: 1.2;
-}
-
-span {
-  color: #000;
-  font-size: 18px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-span:hover {
-  text-decoration: underline;
 }
 
 .categories {
